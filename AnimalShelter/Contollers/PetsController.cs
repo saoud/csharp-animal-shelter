@@ -1,34 +1,34 @@
 using Microsoft.AspNetCore.Mvc;
-using ToDoList.Models;
+using AnimalShelter.Models;
 using System.Collections.Generic;
 
-namespace ToDoList.Controllers
+namespace AnimalShelter.Controllers
 {
-  public class ItemsController : Controller
+  public class PetsController : Controller
   {
 
-    [HttpGet("/categories/{categoryId}/items/new")]
-    public ActionResult New(int categoryId)
+    [HttpGet("/animalType/{AnimalTypeId}/pets/new")]
+    public ActionResult New(int animalTypeId)
     {
-      Category category = Category.Find(categoryId);
-      return View(category);
+      AnimalType animalType = AnimalType.Find(animalTypeId);
+      return View(animalType);
     }
 
-    [HttpPost("/items/delete")]
+    [HttpPost("/pets/delete")]
     public ActionResult DeleteAll()
     {
-      Item.ClearAll();
+      Pet.ClearAll();
       return View();
     }
 
-    [HttpGet("/categories/{categoryId}/items/{itemId}")]
-    public ActionResult Show(int categoryId, int itemId)
+    [HttpGet("/animalType/{animalTypeId}/pets/{petId}")]
+    public ActionResult Show(int animalTypeId, int petId)
     {
-      Item item = Item.Find(itemId);
-      Category category = Category.Find(categoryId);
+      Pet pet = Pet.Find(petId);
+      AnimalType animalType = AnimalType.Find(animalTypeId);
       Dictionary<string, object> model = new Dictionary<string, object>();
-      model.Add("item", item);
-      model.Add("category", category);
+      model.Add("pet", pet);
+      model.Add("animalType", animalType);
       return View(model);
     }
   }

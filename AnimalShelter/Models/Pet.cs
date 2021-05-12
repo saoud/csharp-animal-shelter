@@ -1,21 +1,21 @@
 using System.Collections.Generic;
 
-namespace ToDoList.Models
+namespace AnimalShelter.Models
 {
-  public class Item
+  public class Pet
   {
     public string Description { get; set; }
     public int Id { get; }
-    private static List<Item> _instances = new List<Item> { };
+    private static List<Pet> _instances = new List<Pet> { };
 
-    public Item(string description)
+    public Pet(string description)
     {
       Description = description;
       _instances.Add(this);
       Id = _instances.Count;
     }
 
-    public static List<Item> GetAll()
+    public static List<Pet> GetAll()
     {
       return _instances;
     }
@@ -24,7 +24,7 @@ namespace ToDoList.Models
     {
       _instances.Clear();
     }
-    public static Item Find(int searchId)
+    public static Pet Find(int searchId)
     {
       return _instances[searchId-1];
     }
